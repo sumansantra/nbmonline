@@ -1,0 +1,79 @@
+<div>
+    <h2 data-translate="nbmonlineApp.tender.home.title">Tenders</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="tender.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="nbmonlineApp.tender.home.createLabel">
+                        Create new Tender
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tenderName"><span data-translate="nbmonlineApp.tender.tenderName">Tender Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="publishDate"><span data-translate="nbmonlineApp.tender.publishDate">Publish Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="submitDate"><span data-translate="nbmonlineApp.tender.submitDate">Submit Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="endDate"><span data-translate="nbmonlineApp.tender.endDate">End Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isSingle"><span data-translate="nbmonlineApp.tender.isSingle">Is Single</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tenderFilePath"><span data-translate="nbmonlineApp.tender.tenderFilePath">Tender File Path</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tenderFile"><span data-translate="nbmonlineApp.tender.tenderFile">Tender File</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isActive"><span data-translate="nbmonlineApp.tender.isActive">Is Active</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isDeleted"><span data-translate="nbmonlineApp.tender.isDeleted">Is Deleted</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="tender in vm.tenders track by tender.id">
+                    <td><a ui-sref="tender-detail({id:tender.id})">{{tender.id}}</a></td>
+                    <td>{{tender.tenderName}}</td>
+                    <td>{{tender.publishDate | date:'medium'}}</td>
+                    <td>{{tender.submitDate | date:'medium'}}</td>
+                    <td>{{tender.endDate | date:'medium'}}</td>
+                    <td>{{tender.isSingle}}</td>
+                    <td>{{tender.tenderFilePath}}</td>
+                    <td>
+                        <a ng-if="tender.tenderFile" ng-click="vm.openFile(tender.tenderFileContentType, tender.tenderFile)" data-translate="entity.action.open">open</a>
+                        <span ng-if="tender.tenderFile">{{tender.tenderFileContentType}}, {{vm.byteSize(tender.tenderFile)}}</span>
+                    </td>
+                    <td>{{tender.isActive}}</td>
+                    <td>{{tender.isDeleted}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="tender-detail({id:tender.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="tender.edit({id:tender.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="tender.delete({id:tender.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

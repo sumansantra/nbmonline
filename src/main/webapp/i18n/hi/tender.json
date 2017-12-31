@@ -1,0 +1,29 @@
+{
+    "nbmonlineApp": {
+        "tender" : {
+            "home": {
+                "title": "Tenders",
+                "createLabel": "नया Tender बनाएँ",
+                "createOrEditLabel": "Tender बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Tender [identifier: {{ param }}] तैयार है",
+            "updated": "एक Tender [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Tender [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Tender [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Tender"
+            },
+            "tenderName": "Tender Name",
+            "publishDate": "Publish Date",
+            "submitDate": "Submit Date",
+            "endDate": "End Date",
+            "isSingle": "Is Single",
+            "tenderFilePath": "Tender File Path",
+            "tenderFile": "Tender File",
+            "isActive": "Is Active",
+            "isDeleted": "Is Deleted"
+        }
+    }
+}

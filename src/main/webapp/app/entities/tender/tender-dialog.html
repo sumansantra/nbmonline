@@ -1,0 +1,165 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myTenderLabel" data-translate="nbmonlineApp.tender.home.createOrEditLabel">Create or edit a Tender</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.tender.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.tender.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.tender.tenderName" for="field_tenderName">Tender Name</label>
+            <input type="text" class="form-control" name="tenderName" id="field_tenderName"
+                    ng-model="vm.tender.tenderName"
+                    required/>
+            <div ng-show="editForm.tenderName.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.tenderName.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.tender.publishDate" for="field_publishDate">Publish Date</label>
+                <div class="input-group">
+                    <input id="field_publishDate" type="text" class="form-control" name="publishDate" datetime-picker="{{dateformat}}" ng-model="vm.tender.publishDate" is-open="vm.datePickerOpenStatus.publishDate"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('publishDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.publishDate.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.publishDate.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.publishDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.tender.submitDate" for="field_submitDate">Submit Date</label>
+                <div class="input-group">
+                    <input id="field_submitDate" type="text" class="form-control" name="submitDate" datetime-picker="{{dateformat}}" ng-model="vm.tender.submitDate" is-open="vm.datePickerOpenStatus.submitDate"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('submitDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.submitDate.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.submitDate.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.submitDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.tender.endDate" for="field_endDate">End Date</label>
+                <div class="input-group">
+                    <input id="field_endDate" type="text" class="form-control" name="endDate" datetime-picker="{{dateformat}}" ng-model="vm.tender.endDate" is-open="vm.datePickerOpenStatus.endDate"
+                    required/>
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('endDate')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+            <div ng-show="editForm.endDate.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.endDate.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+                <p class="help-block"
+                    ng-show="editForm.endDate.$error.ZonedDateTimelocal" data-translate="entity.validation.ZonedDateTimelocal">
+                    This field should be a date and time.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.tender.isSingle" for="field_isSingle">Is Single</label>
+                <input type="checkbox" name="isSingle" id="field_isSingle"
+                          ng-model="vm.tender.isSingle"/>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.tender.tenderFilePath" for="field_tenderFilePath">Tender File Path</label>
+            <input type="text" class="form-control" name="tenderFilePath" id="field_tenderFilePath"
+                    ng-model="vm.tender.tenderFilePath"
+                    required/>
+            <div ng-show="editForm.tenderFilePath.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.tenderFilePath.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group" ngf-drop ngf-change="vm.setTenderFile($file, vm.tender)">
+            <label class="control-label" data-translate="nbmonlineApp.tender.tenderFile" for="field_tenderFile">Tender File</label>
+            <div>
+                <div ng-if="vm.tender.tenderFile" class="help-block clearfix">
+                    <a class="pull-left" ng-click="vm.openFile(vm.tender.tenderFileContentType, vm.tender.tenderFile)" data-translate="entity.action.open">open</a><br>
+                    <span class="pull-left">{{vm.tender.tenderFileContentType}}, {{vm.byteSize(vm.tender.tenderFile)}}</span>
+                    <button type="button" ng-click="vm.tender.tenderFile=null;vm.tender.tenderFileContentType=null;"
+                            class="btn btn-default btn-xs pull-right">
+                        <span class="glyphicon glyphicon-remove"></span>
+                    </button>
+                </div>
+                <button type="button" ngf-select class="btn btn-default btn-block"
+                        ngf-change="vm.setTenderFile($file, vm.tender)" data-translate="entity.action.addblob">
+                    Add blob
+                </button>
+            </div>
+            <input type="hidden" class="form-control" name="tenderFile" id="field_tenderFile"
+                    ng-model="vm.tender.tenderFile"
+                    required/>
+            <input type="hidden" class="form-control" name="tenderFileContentType" id="field_tenderFileContentType"
+                    ng-model="vm.tender.tenderFileContentType" />
+            <div ng-show="editForm.tenderFile.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.tenderFile.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.tender.isActive" for="field_isActive">Is Active</label>
+                <input type="checkbox" name="isActive" id="field_isActive"
+                          ng-model="vm.tender.isActive"/>
+            <div ng-show="editForm.isActive.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.isActive.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.tender.isDeleted" for="field_isDeleted">Is Deleted</label>
+                <input type="checkbox" name="isDeleted" id="field_isDeleted"
+                          ng-model="vm.tender.isDeleted"/>
+            <div ng-show="editForm.isDeleted.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.isDeleted.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

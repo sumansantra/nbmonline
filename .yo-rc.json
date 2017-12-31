@@ -1,38 +1,40 @@
 {
   "generator-jhipster": {
-    "applicationType": "monolith",
-    "gitHubOrganization": "sumansantra",
+    "promptValues": {
+      "packageName": "org.nbm",
+      "nativeLanguage": "en"
+    },
+    "jhipsterVersion": "4.13.1",
     "baseName": "nbmonline",
     "packageName": "org.nbm",
-    "serverPort": 8080,
-    "serviceDiscoveryType": false,
-    "authenticationType": "session",
-    "uaaBaseName": "../uaa",
+    "packageFolder": "org/nbm",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
     "cacheProvider": "no",
-    "enableHibernateCache": false,
     "clusteredHttpSession": false,
     "websocket": false,
     "databaseType": "sql",
     "devDatabaseType": "h2Disk",
     "prodDatabaseType": "mysql",
     "searchEngine": false,
-    "enableSwaggerCodegen": false,
     "messageBroker": false,
+    "serviceDiscoveryType": false,
     "buildTool": "maven",
     "enableSocialSignIn": false,
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ae8cc2a780487426f5f81163524e52eb7de5b44b",
+    "clientFramework": "angular1",
     "useSass": false,
     "clientPackageManager": "yarn",
+    "applicationType": "monolith",
     "testFrameworks": [],
+    "jhiPrefix": "jhi",
     "enableTranslation": true,
     "nativeLanguage": "en",
     "languages": [
-      "hi",
-      "en"
+      "en",
+      "hi"
     ],
-    "clientFramework": "angular1",
-    "jhipsterVersion": "4.13.1",
-    "packageFolder": "org/nbm",
-    "rememberMeKey": "9719f795bcc08ce617e6c8d0fc2dd2690d7d8f0a",
-    "jhiPrefix": "jhi"
+    "enableHibernateCache": false
   }
 }

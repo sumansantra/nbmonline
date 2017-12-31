@@ -1,0 +1,29 @@
+{
+    "nbmonlineApp": {
+        "tender" : {
+            "home": {
+                "title": "Tenders",
+                "createLabel": "Create a new Tender",
+                "createOrEditLabel": "Create or edit a Tender"
+            },
+            "created": "A new Tender is created with identifier {{ param }}",
+            "updated": "A Tender is updated with identifier {{ param }}",
+            "deleted": "A Tender is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Tender {{ id }}?"
+            },
+            "detail": {
+                "title": "Tender"
+            },
+            "tenderName": "Tender Name",
+            "publishDate": "Publish Date",
+            "submitDate": "Submit Date",
+            "endDate": "End Date",
+            "isSingle": "Is Single",
+            "tenderFilePath": "Tender File Path",
+            "tenderFile": "Tender File",
+            "isActive": "Is Active",
+            "isDeleted": "Is Deleted"
+        }
+    }
+}

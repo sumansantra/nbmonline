@@ -9,11 +9,11 @@ import java.time.ZonedDateTime;
 import java.util.Objects;
 
 /**
- * A Tender.
+ * A SubTender.
  */
 @Entity
-@Table(name = "tender")
-public class Tender implements Serializable {
+@Table(name = "sub_tender")
+public class SubTender implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
@@ -22,8 +22,8 @@ public class Tender implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "tender_name", nullable = false)
-    private String tenderName;
+    @Column(name = "sub_tender_name", nullable = false)
+    private String subTenderName;
 
     @NotNull
     @Column(name = "publish_date", nullable = false)
@@ -37,13 +37,16 @@ public class Tender implements Serializable {
     @Column(name = "end_date", nullable = false)
     private ZonedDateTime endDate;
 
+    @Column(name = "sub_tender_file_path")
+    private String subTenderFilePath;
+
     @NotNull
     @Lob
-    @Column(name = "tender_file", nullable = false)
-    private byte[] tenderFile;
+    @Column(name = "sub_tender_file", nullable = false)
+    private byte[] subTenderFile;
 
-    @Column(name = "tender_file_content_type", nullable = false)
-    private String tenderFileContentType;
+    @Column(name = "sub_tender_file_content_type", nullable = false)
+    private String subTenderFileContentType;
 
     @NotNull
     @Column(name = "is_active", nullable = false)
@@ -53,12 +56,9 @@ public class Tender implements Serializable {
     @Column(name = "is_deleted", nullable = false)
     private Boolean isDeleted;
 
+    @ManyToOne(optional = false)
     @NotNull
-    @Column(name = "is_single", nullable = false)
-    private Boolean isSingle;
-
-    @Column(name = "tender_file_path")
-    private String tenderFilePath;
+    private Tender tender;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -69,24 +69,24 @@ public class Tender implements Serializable {
         this.id = id;
     }
 
-    public String getTenderName() {
-        return tenderName;
+    public String getSubTenderName() {
+        return subTenderName;
     }
 
-    public Tender tenderName(String tenderName) {
-        this.tenderName = tenderName;
+    public SubTender subTenderName(String subTenderName) {
+        this.subTenderName = subTenderName;
         return this;
     }
 
-    public void setTenderName(String tenderName) {
-        this.tenderName = tenderName;
+    public void setSubTenderName(String subTenderName) {
+        this.subTenderName = subTenderName;
     }
 
     public ZonedDateTime getPublishDate() {
         return publishDate;
     }
 
-    public Tender publishDate(ZonedDateTime publishDate) {
+    public SubTender publishDate(ZonedDateTime publishDate) {
         this.publishDate = publishDate;
         return this;
     }
@@ -99,7 +99,7 @@ public class Tender implements Serializable {
         return submitDate;
     }
 
-    public Tender submitDate(ZonedDateTime submitDate) {
+    public SubTender submitDate(ZonedDateTime submitDate) {
         this.submitDate = submitDate;
         return this;
     }
@@ -112,7 +112,7 @@ public class Tender implements Serializable {
         return endDate;
     }
 
-    public Tender endDate(ZonedDateTime endDate) {
+    public SubTender endDate(ZonedDateTime endDate) {
         this.endDate = endDate;
         return this;
     }
@@ -121,37 +121,50 @@ public class Tender implements Serializable {
         this.endDate = endDate;
     }
 
-    public byte[] getTenderFile() {
-        return tenderFile;
+    public String getSubTenderFilePath() {
+        return subTenderFilePath;
     }
 
-    public Tender tenderFile(byte[] tenderFile) {
-        this.tenderFile = tenderFile;
+    public SubTender subTenderFilePath(String subTenderFilePath) {
+        this.subTenderFilePath = subTenderFilePath;
         return this;
     }
 
-    public void setTenderFile(byte[] tenderFile) {
-        this.tenderFile = tenderFile;
+    public void setSubTenderFilePath(String subTenderFilePath) {
+        this.subTenderFilePath = subTenderFilePath;
     }
 
-    public String getTenderFileContentType() {
-        return tenderFileContentType;
+    public byte[] getSubTenderFile() {
+        return subTenderFile;
     }
 
-    public Tender tenderFileContentType(String tenderFileContentType) {
-        this.tenderFileContentType = tenderFileContentType;
+    public SubTender subTenderFile(byte[] subTenderFile) {
+        this.subTenderFile = subTenderFile;
         return this;
     }
 
-    public void setTenderFileContentType(String tenderFileContentType) {
-        this.tenderFileContentType = tenderFileContentType;
+    public void setSubTenderFile(byte[] subTenderFile) {
+        this.subTenderFile = subTenderFile;
+    }
+
+    public String getSubTenderFileContentType() {
+        return subTenderFileContentType;
+    }
+
+    public SubTender subTenderFileContentType(String subTenderFileContentType) {
+        this.subTenderFileContentType = subTenderFileContentType;
+        return this;
+    }
+
+    public void setSubTenderFileContentType(String subTenderFileContentType) {
+        this.subTenderFileContentType = subTenderFileContentType;
     }
 
     public Boolean isIsActive() {
         return isActive;
     }
 
-    public Tender isActive(Boolean isActive) {
+    public SubTender isActive(Boolean isActive) {
         this.isActive = isActive;
         return this;
     }
@@ -164,7 +177,7 @@ public class Tender implements Serializable {
         return isDeleted;
     }
 
-    public Tender isDeleted(Boolean isDeleted) {
+    public SubTender isDeleted(Boolean isDeleted) {
         this.isDeleted = isDeleted;
         return this;
     }
@@ -173,30 +186,17 @@ public class Tender implements Serializable {
         this.isDeleted = isDeleted;
     }
 
-    public Boolean isIsSingle() {
-        return isSingle;
+    public Tender getTender() {
+        return tender;
     }
 
-    public Tender isSingle(Boolean isSingle) {
-        this.isSingle = isSingle;
+    public SubTender tender(Tender tender) {
+        this.tender = tender;
         return this;
     }
 
-    public void setIsSingle(Boolean isSingle) {
-        this.isSingle = isSingle;
-    }
-
-    public String getTenderFilePath() {
-        return tenderFilePath;
-    }
-
-    public Tender tenderFilePath(String tenderFilePath) {
-        this.tenderFilePath = tenderFilePath;
-        return this;
-    }
-
-    public void setTenderFilePath(String tenderFilePath) {
-        this.tenderFilePath = tenderFilePath;
+    public void setTender(Tender tender) {
+        this.tender = tender;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -208,11 +208,11 @@ public class Tender implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Tender tender = (Tender) o;
-        if (tender.getId() == null || getId() == null) {
+        SubTender subTender = (SubTender) o;
+        if (subTender.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), tender.getId());
+        return Objects.equals(getId(), subTender.getId());
     }
 
     @Override
@@ -222,18 +222,17 @@ public class Tender implements Serializable {
 
     @Override
     public String toString() {
-        return "Tender{" +
+        return "SubTender{" +
             "id=" + getId() +
-            ", tenderName='" + getTenderName() + "'" +
+            ", subTenderName='" + getSubTenderName() + "'" +
             ", publishDate='" + getPublishDate() + "'" +
             ", submitDate='" + getSubmitDate() + "'" +
             ", endDate='" + getEndDate() + "'" +
-            ", tenderFile='" + getTenderFile() + "'" +
-            ", tenderFileContentType='" + getTenderFileContentType() + "'" +
+            ", subTenderFilePath='" + getSubTenderFilePath() + "'" +
+            ", subTenderFile='" + getSubTenderFile() + "'" +
+            ", subTenderFileContentType='" + getSubTenderFileContentType() + "'" +
             ", isActive='" + isIsActive() + "'" +
             ", isDeleted='" + isIsDeleted() + "'" +
-            ", isSingle='" + isIsSingle() + "'" +
-            ", tenderFilePath='" + getTenderFilePath() + "'" +
             "}";
     }
 }

@@ -15,14 +15,14 @@
     <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
 
     <!--
-        Added the entity Tender.
+        Added the entity SubTender.
     -->
-    <changeSet id="20171231125213-1" author="jhipster">
-        <createTable tableName="tender">
+    <changeSet id="20171231142135-1" author="jhipster">
+        <createTable tableName="sub_tender">
             <column name="id" type="bigint" autoIncrement="${autoIncrement}">
                 <constraints primaryKey="true" nullable="false"/>
             </column>
-            <column name="tender_name" type="varchar(255)">
+            <column name="sub_tender_name" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
@@ -38,10 +38,14 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="tender_file" type="longblob">
+            <column name="sub_tender_file_path" type="varchar(255)">
+                <constraints nullable="true" />
+            </column>
+
+            <column name="sub_tender_file" type="longblob">
                 <constraints nullable="false" />
             </column>
-            <column name="tender_file_content_type" type="varchar(255)">
+            <column name="sub_tender_file_content_type" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
@@ -53,19 +57,15 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="is_single" type="bit">
+            <column name="tender_id" type="bigint">
                 <constraints nullable="false" />
-            </column>
-
-            <column name="tender_file_path" type="varchar(255)">
-                <constraints nullable="true" />
             </column>
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="tender" columnName="publish_date" columnDataType="datetime"/>
-        <dropDefaultValue tableName="tender" columnName="submit_date" columnDataType="datetime"/>
-        <dropDefaultValue tableName="tender" columnName="end_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="sub_tender" columnName="publish_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="sub_tender" columnName="submit_date" columnDataType="datetime"/>
+        <dropDefaultValue tableName="sub_tender" columnName="end_date" columnDataType="datetime"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

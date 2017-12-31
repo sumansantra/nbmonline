@@ -8,6 +8,7 @@
             "entities": {
                 "main": "Entities",
                 "tender": "Tender",
+                "subTender": "Sub Tender",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

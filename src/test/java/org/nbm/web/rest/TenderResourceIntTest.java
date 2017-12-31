@@ -57,12 +57,6 @@ public class TenderResourceIntTest {
     private static final ZonedDateTime DEFAULT_END_DATE = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
     private static final ZonedDateTime UPDATED_END_DATE = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
 
-    private static final Boolean DEFAULT_IS_SINGLE = false;
-    private static final Boolean UPDATED_IS_SINGLE = true;
-
-    private static final String DEFAULT_TENDER_FILE_PATH = "AAAAAAAAAA";
-    private static final String UPDATED_TENDER_FILE_PATH = "BBBBBBBBBB";
-
     private static final byte[] DEFAULT_TENDER_FILE = TestUtil.createByteArray(1, "0");
     private static final byte[] UPDATED_TENDER_FILE = TestUtil.createByteArray(2, "1");
     private static final String DEFAULT_TENDER_FILE_CONTENT_TYPE = "image/jpg";
@@ -73,6 +67,12 @@ public class TenderResourceIntTest {
 
     private static final Boolean DEFAULT_IS_DELETED = false;
     private static final Boolean UPDATED_IS_DELETED = true;
+
+    private static final Boolean DEFAULT_IS_SINGLE = false;
+    private static final Boolean UPDATED_IS_SINGLE = true;
+
+    private static final String DEFAULT_TENDER_FILE_PATH = "AAAAAAAAAA";
+    private static final String UPDATED_TENDER_FILE_PATH = "BBBBBBBBBB";
 
     @Autowired
     private TenderRepository tenderRepository;
@@ -119,12 +119,12 @@ public class TenderResourceIntTest {
             .publishDate(DEFAULT_PUBLISH_DATE)
             .submitDate(DEFAULT_SUBMIT_DATE)
             .endDate(DEFAULT_END_DATE)
-            .isSingle(DEFAULT_IS_SINGLE)
-            .tenderFilePath(DEFAULT_TENDER_FILE_PATH)
             .tenderFile(DEFAULT_TENDER_FILE)
             .tenderFileContentType(DEFAULT_TENDER_FILE_CONTENT_TYPE)
             .isActive(DEFAULT_IS_ACTIVE)
-            .isDeleted(DEFAULT_IS_DELETED);
+            .isDeleted(DEFAULT_IS_DELETED)
+            .isSingle(DEFAULT_IS_SINGLE)
+            .tenderFilePath(DEFAULT_TENDER_FILE_PATH);
         return tender;
     }
 
@@ -152,12 +152,12 @@ public class TenderResourceIntTest {
         assertThat(testTender.getPublishDate()).isEqualTo(DEFAULT_PUBLISH_DATE);
         assertThat(testTender.getSubmitDate()).isEqualTo(DEFAULT_SUBMIT_DATE);
         assertThat(testTender.getEndDate()).isEqualTo(DEFAULT_END_DATE);
-        assertThat(testTender.isIsSingle()).isEqualTo(DEFAULT_IS_SINGLE);
-        assertThat(testTender.getTenderFilePath()).isEqualTo(DEFAULT_TENDER_FILE_PATH);
         assertThat(testTender.getTenderFile()).isEqualTo(DEFAULT_TENDER_FILE);
         assertThat(testTender.getTenderFileContentType()).isEqualTo(DEFAULT_TENDER_FILE_CONTENT_TYPE);
         assertThat(testTender.isIsActive()).isEqualTo(DEFAULT_IS_ACTIVE);
         assertThat(testTender.isIsDeleted()).isEqualTo(DEFAULT_IS_DELETED);
+        assertThat(testTender.isIsSingle()).isEqualTo(DEFAULT_IS_SINGLE);
+        assertThat(testTender.getTenderFilePath()).isEqualTo(DEFAULT_TENDER_FILE_PATH);
     }
 
     @Test
@@ -253,24 +253,6 @@ public class TenderResourceIntTest {
 
     @Test
     @Transactional
-    public void checkTenderFilePathIsRequired() throws Exception {
-        int databaseSizeBeforeTest = tenderRepository.findAll().size();
-        // set the field null
-        tender.setTenderFilePath(null);
-
-        // Create the Tender, which fails.
-
-        restTenderMockMvc.perform(post("/api/tenders")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(tender)))
-            .andExpect(status().isBadRequest());
-
-        List<Tender> tenderList = tenderRepository.findAll();
-        assertThat(tenderList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkTenderFileIsRequired() throws Exception {
         int databaseSizeBeforeTest = tenderRepository.findAll().size();
         // set the field null
@@ -325,6 +307,24 @@ public class TenderResourceIntTest {
 
     @Test
     @Transactional
+    public void checkIsSingleIsRequired() throws Exception {
+        int databaseSizeBeforeTest = tenderRepository.findAll().size();
+        // set the field null
+        tender.setIsSingle(null);
+
+        // Create the Tender, which fails.
+
+        restTenderMockMvc.perform(post("/api/tenders")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(tender)))
+            .andExpect(status().isBadRequest());
+
+        List<Tender> tenderList = tenderRepository.findAll();
+        assertThat(tenderList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void getAllTenders() throws Exception {
         // Initialize the database
         tenderRepository.saveAndFlush(tender);
@@ -338,12 +338,12 @@ public class TenderResourceIntTest {
             .andExpect(jsonPath("$.[*].publishDate").value(hasItem(sameInstant(DEFAULT_PUBLISH_DATE))))
             .andExpect(jsonPath("$.[*].submitDate").value(hasItem(sameInstant(DEFAULT_SUBMIT_DATE))))
             .andExpect(jsonPath("$.[*].endDate").value(hasItem(sameInstant(DEFAULT_END_DATE))))
-            .andExpect(jsonPath("$.[*].isSingle").value(hasItem(DEFAULT_IS_SINGLE.booleanValue())))
-            .andExpect(jsonPath("$.[*].tenderFilePath").value(hasItem(DEFAULT_TENDER_FILE_PATH.toString())))
             .andExpect(jsonPath("$.[*].tenderFileContentType").value(hasItem(DEFAULT_TENDER_FILE_CONTENT_TYPE)))
             .andExpect(jsonPath("$.[*].tenderFile").value(hasItem(Base64Utils.encodeToString(DEFAULT_TENDER_FILE))))
             .andExpect(jsonPath("$.[*].isActive").value(hasItem(DEFAULT_IS_ACTIVE.booleanValue())))
-            .andExpect(jsonPath("$.[*].isDeleted").value(hasItem(DEFAULT_IS_DELETED.booleanValue())));
+            .andExpect(jsonPath("$.[*].isDeleted").value(hasItem(DEFAULT_IS_DELETED.booleanValue())))
+            .andExpect(jsonPath("$.[*].isSingle").value(hasItem(DEFAULT_IS_SINGLE.booleanValue())))
+            .andExpect(jsonPath("$.[*].tenderFilePath").value(hasItem(DEFAULT_TENDER_FILE_PATH.toString())));
     }
 
     @Test
@@ -361,12 +361,12 @@ public class TenderResourceIntTest {
             .andExpect(jsonPath("$.publishDate").value(sameInstant(DEFAULT_PUBLISH_DATE)))
             .andExpect(jsonPath("$.submitDate").value(sameInstant(DEFAULT_SUBMIT_DATE)))
             .andExpect(jsonPath("$.endDate").value(sameInstant(DEFAULT_END_DATE)))
-            .andExpect(jsonPath("$.isSingle").value(DEFAULT_IS_SINGLE.booleanValue()))
-            .andExpect(jsonPath("$.tenderFilePath").value(DEFAULT_TENDER_FILE_PATH.toString()))
             .andExpect(jsonPath("$.tenderFileContentType").value(DEFAULT_TENDER_FILE_CONTENT_TYPE))
             .andExpect(jsonPath("$.tenderFile").value(Base64Utils.encodeToString(DEFAULT_TENDER_FILE)))
             .andExpect(jsonPath("$.isActive").value(DEFAULT_IS_ACTIVE.booleanValue()))
-            .andExpect(jsonPath("$.isDeleted").value(DEFAULT_IS_DELETED.booleanValue()));
+            .andExpect(jsonPath("$.isDeleted").value(DEFAULT_IS_DELETED.booleanValue()))
+            .andExpect(jsonPath("$.isSingle").value(DEFAULT_IS_SINGLE.booleanValue()))
+            .andExpect(jsonPath("$.tenderFilePath").value(DEFAULT_TENDER_FILE_PATH.toString()));
     }
 
     @Test
@@ -394,12 +394,12 @@ public class TenderResourceIntTest {
             .publishDate(UPDATED_PUBLISH_DATE)
             .submitDate(UPDATED_SUBMIT_DATE)
             .endDate(UPDATED_END_DATE)
-            .isSingle(UPDATED_IS_SINGLE)
-            .tenderFilePath(UPDATED_TENDER_FILE_PATH)
             .tenderFile(UPDATED_TENDER_FILE)
             .tenderFileContentType(UPDATED_TENDER_FILE_CONTENT_TYPE)
             .isActive(UPDATED_IS_ACTIVE)
-            .isDeleted(UPDATED_IS_DELETED);
+            .isDeleted(UPDATED_IS_DELETED)
+            .isSingle(UPDATED_IS_SINGLE)
+            .tenderFilePath(UPDATED_TENDER_FILE_PATH);
 
         restTenderMockMvc.perform(put("/api/tenders")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -414,12 +414,12 @@ public class TenderResourceIntTest {
         assertThat(testTender.getPublishDate()).isEqualTo(UPDATED_PUBLISH_DATE);
         assertThat(testTender.getSubmitDate()).isEqualTo(UPDATED_SUBMIT_DATE);
         assertThat(testTender.getEndDate()).isEqualTo(UPDATED_END_DATE);
-        assertThat(testTender.isIsSingle()).isEqualTo(UPDATED_IS_SINGLE);
-        assertThat(testTender.getTenderFilePath()).isEqualTo(UPDATED_TENDER_FILE_PATH);
         assertThat(testTender.getTenderFile()).isEqualTo(UPDATED_TENDER_FILE);
         assertThat(testTender.getTenderFileContentType()).isEqualTo(UPDATED_TENDER_FILE_CONTENT_TYPE);
         assertThat(testTender.isIsActive()).isEqualTo(UPDATED_IS_ACTIVE);
         assertThat(testTender.isIsDeleted()).isEqualTo(UPDATED_IS_DELETED);
+        assertThat(testTender.isIsSingle()).isEqualTo(UPDATED_IS_SINGLE);
+        assertThat(testTender.getTenderFilePath()).isEqualTo(UPDATED_TENDER_FILE_PATH);
     }
 
     @Test

@@ -1,0 +1,81 @@
+<div>
+    <h2 data-translate="nbmonlineApp.subTender.home.title">Sub Tenders</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="sub-tender.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="nbmonlineApp.subTender.home.createLabel">
+                        Create new Sub Tender
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="subTenderName"><span data-translate="nbmonlineApp.subTender.subTenderName">Sub Tender Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="publishDate"><span data-translate="nbmonlineApp.subTender.publishDate">Publish Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="submitDate"><span data-translate="nbmonlineApp.subTender.submitDate">Submit Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="endDate"><span data-translate="nbmonlineApp.subTender.endDate">End Date</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="subTenderFilePath"><span data-translate="nbmonlineApp.subTender.subTenderFilePath">Sub Tender File Path</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="subTenderFile"><span data-translate="nbmonlineApp.subTender.subTenderFile">Sub Tender File</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isActive"><span data-translate="nbmonlineApp.subTender.isActive">Is Active</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isDeleted"><span data-translate="nbmonlineApp.subTender.isDeleted">Is Deleted</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tender.tenderName"><span data-translate="nbmonlineApp.subTender.tender">Tender</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="subTender in vm.subTenders track by subTender.id">
+                    <td><a ui-sref="sub-tender-detail({id:subTender.id})">{{subTender.id}}</a></td>
+                    <td>{{subTender.subTenderName}}</td>
+                    <td>{{subTender.publishDate | date:'medium'}}</td>
+                    <td>{{subTender.submitDate | date:'medium'}}</td>
+                    <td>{{subTender.endDate | date:'medium'}}</td>
+                    <td>{{subTender.subTenderFilePath}}</td>
+                    <td>
+                        <a ng-if="subTender.subTenderFile" ng-click="vm.openFile(subTender.subTenderFileContentType, subTender.subTenderFile)" data-translate="entity.action.open">open</a>
+                        <span ng-if="subTender.subTenderFile">{{subTender.subTenderFileContentType}}, {{vm.byteSize(subTender.subTenderFile)}}</span>
+                    </td>
+                    <td>{{subTender.isActive}}</td>
+                    <td>{{subTender.isDeleted}}</td>
+                    <td>
+                        <a ui-sref="tender-detail({id:subTender.tender.id})">{{subTender.tender.tenderName}}</a>
+                    </td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="sub-tender-detail({id:subTender.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="sub-tender.edit({id:subTender.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="sub-tender.delete({id:subTender.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

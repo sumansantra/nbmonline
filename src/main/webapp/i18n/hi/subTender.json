@@ -1,0 +1,29 @@
+{
+    "nbmonlineApp": {
+        "subTender" : {
+            "home": {
+                "title": "SubTenders",
+                "createLabel": "नया Sub Tender बनाएँ",
+                "createOrEditLabel": "Sub Tender बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Sub Tender [identifier: {{ param }}] तैयार है",
+            "updated": "एक Sub Tender [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Sub Tender [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Sub Tender [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Sub Tender"
+            },
+            "subTenderName": "Sub Tender Name",
+            "publishDate": "Publish Date",
+            "submitDate": "Submit Date",
+            "endDate": "End Date",
+            "subTenderFilePath": "Sub Tender File Path",
+            "subTenderFile": "Sub Tender File",
+            "isActive": "Is Active",
+            "isDeleted": "Is Deleted",
+            "tender": "Tender"
+        }
+    }
+}

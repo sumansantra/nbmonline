@@ -9,17 +9,17 @@
 
     function stateConfig($stateProvider) {
         $stateProvider
-        .state('tender', {
+        .state('sub-tender', {
             parent: 'entity',
-            url: '/tender?page&sort&search',
+            url: '/sub-tender?page&sort&search',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'nbmonlineApp.tender.home.title'
+                pageTitle: 'nbmonlineApp.subTender.home.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/tender/tenders.html',
-                    controller: 'TenderController',
+                    templateUrl: 'app/entities/sub-tender/sub-tenders.html',
+                    controller: 'SubTenderController',
                     controllerAs: 'vm'
                 }
             },
@@ -45,37 +45,37 @@
                     };
                 }],
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('tender');
+                    $translatePartialLoader.addPart('subTender');
                     $translatePartialLoader.addPart('global');
                     return $translate.refresh();
                 }]
             }
         })
-        .state('tender-detail', {
-            parent: 'tender',
-            url: '/tender/{id}',
+        .state('sub-tender-detail', {
+            parent: 'sub-tender',
+            url: '/sub-tender/{id}',
             data: {
                 authorities: ['ROLE_USER'],
-                pageTitle: 'nbmonlineApp.tender.detail.title'
+                pageTitle: 'nbmonlineApp.subTender.detail.title'
             },
             views: {
                 'content@': {
-                    templateUrl: 'app/entities/tender/tender-detail.html',
-                    controller: 'TenderDetailController',
+                    templateUrl: 'app/entities/sub-tender/sub-tender-detail.html',
+                    controller: 'SubTenderDetailController',
                     controllerAs: 'vm'
                 }
             },
             resolve: {
                 translatePartialLoader: ['$translate', '$translatePartialLoader', function ($translate, $translatePartialLoader) {
-                    $translatePartialLoader.addPart('tender');
+                    $translatePartialLoader.addPart('subTender');
                     return $translate.refresh();
                 }],
-                entity: ['$stateParams', 'Tender', function($stateParams, Tender) {
-                    return Tender.get({id : $stateParams.id}).$promise;
+                entity: ['$stateParams', 'SubTender', function($stateParams, SubTender) {
+                    return SubTender.get({id : $stateParams.id}).$promise;
                 }],
                 previousState: ["$state", function ($state) {
                     var currentStateData = {
-                        name: $state.current.name || 'tender',
+                        name: $state.current.name || 'sub-tender',
                         params: $state.params,
                         url: $state.href($state.current.name, $state.params)
                     };
@@ -83,22 +83,22 @@
                 }]
             }
         })
-        .state('tender-detail.edit', {
-            parent: 'tender-detail',
+        .state('sub-tender-detail.edit', {
+            parent: 'sub-tender-detail',
             url: '/detail/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/tender/tender-dialog.html',
-                    controller: 'TenderDialogController',
+                    templateUrl: 'app/entities/sub-tender/sub-tender-dialog.html',
+                    controller: 'SubTenderDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Tender', function(Tender) {
-                            return Tender.get({id : $stateParams.id}).$promise;
+                        entity: ['SubTender', function(SubTender) {
+                            return SubTender.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
@@ -108,87 +108,86 @@
                 });
             }]
         })
-        .state('tender.new', {
-            parent: 'tender',
+        .state('sub-tender.new', {
+            parent: 'sub-tender',
             url: '/new',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/tender/tender-dialog.html',
-                    controller: 'TenderDialogController',
+                    templateUrl: 'app/entities/sub-tender/sub-tender-dialog.html',
+                    controller: 'SubTenderDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
                         entity: function () {
                             return {
-                                tenderName: null,
+                                subTenderName: null,
                                 publishDate: null,
                                 submitDate: null,
                                 endDate: null,
-                                tenderFile: null,
-                                tenderFileContentType: null,
+                                subTenderFilePath: null,
+                                subTenderFile: null,
+                                subTenderFileContentType: null,
                                 isActive: false,
                                 isDeleted: false,
-                                isSingle: false,
-                                tenderFilePath: null,
                                 id: null
                             };
                         }
                     }
                 }).result.then(function() {
-                    $state.go('tender', null, { reload: 'tender' });
+                    $state.go('sub-tender', null, { reload: 'sub-tender' });
                 }, function() {
-                    $state.go('tender');
+                    $state.go('sub-tender');
                 });
             }]
         })
-        .state('tender.edit', {
-            parent: 'tender',
+        .state('sub-tender.edit', {
+            parent: 'sub-tender',
             url: '/{id}/edit',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/tender/tender-dialog.html',
-                    controller: 'TenderDialogController',
+                    templateUrl: 'app/entities/sub-tender/sub-tender-dialog.html',
+                    controller: 'SubTenderDialogController',
                     controllerAs: 'vm',
                     backdrop: 'static',
                     size: 'lg',
                     resolve: {
-                        entity: ['Tender', function(Tender) {
-                            return Tender.get({id : $stateParams.id}).$promise;
+                        entity: ['SubTender', function(SubTender) {
+                            return SubTender.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('tender', null, { reload: 'tender' });
+                    $state.go('sub-tender', null, { reload: 'sub-tender' });
                 }, function() {
                     $state.go('^');
                 });
             }]
         })
-        .state('tender.delete', {
-            parent: 'tender',
+        .state('sub-tender.delete', {
+            parent: 'sub-tender',
             url: '/{id}/delete',
             data: {
                 authorities: ['ROLE_USER']
             },
             onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
                 $uibModal.open({
-                    templateUrl: 'app/entities/tender/tender-delete-dialog.html',
-                    controller: 'TenderDeleteController',
+                    templateUrl: 'app/entities/sub-tender/sub-tender-delete-dialog.html',
+                    controller: 'SubTenderDeleteController',
                     controllerAs: 'vm',
                     size: 'md',
                     resolve: {
-                        entity: ['Tender', function(Tender) {
-                            return Tender.get({id : $stateParams.id}).$promise;
+                        entity: ['SubTender', function(SubTender) {
+                            return SubTender.get({id : $stateParams.id}).$promise;
                         }]
                     }
                 }).result.then(function() {
-                    $state.go('tender', null, { reload: 'tender' });
+                    $state.go('sub-tender', null, { reload: 'sub-tender' });
                 }, function() {
                     $state.go('^');
                 });

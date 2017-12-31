@@ -19,11 +19,11 @@
             "publishDate": "Publish Date",
             "submitDate": "Submit Date",
             "endDate": "End Date",
-            "isSingle": "Is Single",
-            "tenderFilePath": "Tender File Path",
             "tenderFile": "Tender File",
             "isActive": "Is Active",
-            "isDeleted": "Is Deleted"
+            "isDeleted": "Is Deleted",
+            "isSingle": "Is Single",
+            "tenderFilePath": "Tender File Path"
         }
     }
 }

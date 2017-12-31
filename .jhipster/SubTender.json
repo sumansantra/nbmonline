@@ -1,9 +1,19 @@
 {
     "fluentMethods": true,
-    "relationships": [],
+    "relationships": [
+        {
+            "relationshipName": "tender",
+            "otherEntityName": "tender",
+            "relationshipType": "many-to-one",
+            "relationshipValidateRules": [
+                "required"
+            ],
+            "otherEntityField": "tenderName"
+        }
+    ],
     "fields": [
         {
-            "fieldName": "tenderName",
+            "fieldName": "subTenderName",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
@@ -31,7 +41,11 @@
             ]
         },
         {
-            "fieldName": "tenderFile",
+            "fieldName": "subTenderFilePath",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "subTenderFile",
             "fieldType": "byte[]",
             "fieldTypeBlobContent": "any",
             "fieldValidateRules": [
@@ -51,23 +65,12 @@
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldName": "isSingle",
-            "fieldType": "Boolean",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "tenderFilePath",
-            "fieldType": "String"
         }
     ],
-    "changelogDate": "20171231125213",
+    "changelogDate": "20171231142135",
     "dto": "no",
     "service": "serviceClass",
-    "entityTableName": "tender",
+    "entityTableName": "sub_tender",
     "jpaMetamodelFiltering": false,
     "pagination": "pagination"
 }

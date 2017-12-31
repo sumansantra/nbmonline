@@ -1,0 +1,29 @@
+{
+    "nbmonlineApp": {
+        "subTender" : {
+            "home": {
+                "title": "Sub Tenders",
+                "createLabel": "Create a new Sub Tender",
+                "createOrEditLabel": "Create or edit a Sub Tender"
+            },
+            "created": "A new Sub Tender is created with identifier {{ param }}",
+            "updated": "A Sub Tender is updated with identifier {{ param }}",
+            "deleted": "A Sub Tender is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Sub Tender {{ id }}?"
+            },
+            "detail": {
+                "title": "Sub Tender"
+            },
+            "subTenderName": "Sub Tender Name",
+            "publishDate": "Publish Date",
+            "submitDate": "Submit Date",
+            "endDate": "End Date",
+            "subTenderFilePath": "Sub Tender File Path",
+            "subTenderFile": "Sub Tender File",
+            "isActive": "Is Active",
+            "isDeleted": "Is Deleted",
+            "tender": "Tender"
+        }
+    }
+}

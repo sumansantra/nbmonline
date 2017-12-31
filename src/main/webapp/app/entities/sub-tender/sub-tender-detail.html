@@ -1,0 +1,58 @@
+
+<div>
+    <h2><span data-translate="nbmonlineApp.subTender.detail.title">Sub Tender</span> {{vm.subTender.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="nbmonlineApp.subTender.subTenderName">Sub Tender Name</span></dt>
+        <dd>
+            <span>{{vm.subTender.subTenderName}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.subTender.publishDate">Publish Date</span></dt>
+        <dd>
+            <span>{{vm.subTender.publishDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.subTender.submitDate">Submit Date</span></dt>
+        <dd>
+            <span>{{vm.subTender.submitDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.subTender.endDate">End Date</span></dt>
+        <dd>
+            <span>{{vm.subTender.endDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.subTender.subTenderFilePath">Sub Tender File Path</span></dt>
+        <dd>
+            <span>{{vm.subTender.subTenderFilePath}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.subTender.subTenderFile">Sub Tender File</span></dt>
+        <dd>
+            <div ng-if="vm.subTender.subTenderFile">
+                <a ng-click="vm.openFile(vm.subTender.subTenderFileContentType, vm.subTender.subTenderFile)" data-translate="entity.action.open">open</a>
+                {{vm.subTender.subTenderFileContentType}}, {{vm.byteSize(vm.subTender.subTenderFile)}}
+            </div>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.subTender.isActive">Is Active</span></dt>
+        <dd>
+            <span>{{vm.subTender.isActive}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.subTender.isDeleted">Is Deleted</span></dt>
+        <dd>
+            <span>{{vm.subTender.isDeleted}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.subTender.tender">Tender</span></dt>
+        <dd>
+            <a ui-sref="tender-detail({id:vm.subTender.tender.id})">{{vm.subTender.tender.tenderName}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="sub-tender-detail.edit({id:vm.subTender.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

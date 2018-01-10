@@ -1,0 +1,25 @@
+{
+    "nbmonlineApp": {
+        "flowerFestivalImage" : {
+            "home": {
+                "title": "Flower Festival Images",
+                "createLabel": "Create a new Flower Festival Image",
+                "createOrEditLabel": "Create or edit a Flower Festival Image"
+            },
+            "created": "A new Flower Festival Image is created with identifier {{ param }}",
+            "updated": "A Flower Festival Image is updated with identifier {{ param }}",
+            "deleted": "A Flower Festival Image is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Flower Festival Image {{ id }}?"
+            },
+            "detail": {
+                "title": "Flower Festival Image"
+            },
+            "imageName": "Image Name",
+            "imageFile": "Image File",
+            "isActive": "Is Active",
+            "isDeleted": "Is Deleted",
+            "flowerFestival": "Flower Festival"
+        }
+    }
+}

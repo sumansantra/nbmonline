@@ -9,6 +9,14 @@
                 "main": "Entities",
                 "tender": "Tender",
                 "subTender": "Sub Tender",
+                "news": "News",
+                "event": "Event",
+                "message": "Message",
+                "notice": "Notice",
+                "latestActivity": "Latest Activity",
+                "galary": "Galary",
+                "flowerFestival": "Flower Festival",
+                "flowerFestivalImage": "Flower Festival Image",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

@@ -1,0 +1,25 @@
+{
+    "nbmonlineApp": {
+        "latestActivity" : {
+            "home": {
+                "title": "Latest Activities",
+                "createLabel": "Create a new Latest Activity",
+                "createOrEditLabel": "Create or edit a Latest Activity"
+            },
+            "created": "A new Latest Activity is created with identifier {{ param }}",
+            "updated": "A Latest Activity is updated with identifier {{ param }}",
+            "deleted": "A Latest Activity is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Latest Activity {{ id }}?"
+            },
+            "detail": {
+                "title": "Latest Activity"
+            },
+            "activityName": "Activity Name",
+            "description": "Description",
+            "image": "Image",
+            "isActive": "Is Active",
+            "isDeleted": "Is Deleted"
+        }
+    }
+}

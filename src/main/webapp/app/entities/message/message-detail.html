@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="nbmonlineApp.message.detail.title">Message</span> {{vm.message.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="nbmonlineApp.message.subject">Subject</span></dt>
+        <dd>
+            <span>{{vm.message.subject}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.message.description">Description</span></dt>
+        <dd>
+            <span>{{vm.message.description}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.message.isActive">Is Active</span></dt>
+        <dd>
+            <span>{{vm.message.isActive}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.message.isDeleted">Is Deleted</span></dt>
+        <dd>
+            <span>{{vm.message.isDeleted}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="message-detail.edit({id:vm.message.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

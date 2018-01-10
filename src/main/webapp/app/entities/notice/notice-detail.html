@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="nbmonlineApp.notice.detail.title">Notice</span> {{vm.notice.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="nbmonlineApp.notice.title">Title</span></dt>
+        <dd>
+            <span>{{vm.notice.title}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.notice.description">Description</span></dt>
+        <dd>
+            <span>{{vm.notice.description}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.notice.publishDate">Publish Date</span></dt>
+        <dd>
+            <span>{{vm.notice.publishDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.notice.isActive">Is Active</span></dt>
+        <dd>
+            <span>{{vm.notice.isActive}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.notice.isDeleted">Is Deleted</span></dt>
+        <dd>
+            <span>{{vm.notice.isDeleted}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="notice-detail.edit({id:vm.notice.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

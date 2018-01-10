@@ -1,0 +1,44 @@
+
+<div>
+    <h2><span data-translate="nbmonlineApp.latestActivity.detail.title">Latest Activity</span> {{vm.latestActivity.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="nbmonlineApp.latestActivity.activityName">Activity Name</span></dt>
+        <dd>
+            <span>{{vm.latestActivity.activityName}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.latestActivity.description">Description</span></dt>
+        <dd>
+            <span>{{vm.latestActivity.description}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.latestActivity.image">Image</span></dt>
+        <dd>
+            <div ng-if="vm.latestActivity.image">
+                <a ng-click="vm.openFile(vm.latestActivity.imageContentType, vm.latestActivity.image)">
+                    <img data-ng-src="{{'data:' + vm.latestActivity.imageContentType + ';base64,' + vm.latestActivity.image}}" style="max-width: 100%;" alt="latestActivity image"/>
+                </a>
+                {{vm.latestActivity.imageContentType}}, {{vm.byteSize(vm.latestActivity.image)}}
+            </div>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.latestActivity.isActive">Is Active</span></dt>
+        <dd>
+            <span>{{vm.latestActivity.isActive}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.latestActivity.isDeleted">Is Deleted</span></dt>
+        <dd>
+            <span>{{vm.latestActivity.isDeleted}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="latest-activity-detail.edit({id:vm.latestActivity.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

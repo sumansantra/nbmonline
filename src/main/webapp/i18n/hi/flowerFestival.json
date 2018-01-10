@@ -1,0 +1,26 @@
+{
+    "nbmonlineApp": {
+        "flowerFestival" : {
+            "home": {
+                "title": "FlowerFestivals",
+                "createLabel": "नया Flower Festival बनाएँ",
+                "createOrEditLabel": "Flower Festival बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Flower Festival [identifier: {{ param }}] तैयार है",
+            "updated": "एक Flower Festival [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Flower Festival [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Flower Festival [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Flower Festival"
+            },
+            "festivalName": "Festival Name",
+            "year": "Year",
+            "description": "Description",
+            "isActive": "Is Active",
+            "isDeleted": "Is Deleted",
+            "flowerFestivalImages": "Flower Festival Images"
+        }
+    }
+}

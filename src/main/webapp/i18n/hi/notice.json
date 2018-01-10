@@ -1,0 +1,25 @@
+{
+    "nbmonlineApp": {
+        "notice" : {
+            "home": {
+                "title": "Notices",
+                "createLabel": "नया Notice बनाएँ",
+                "createOrEditLabel": "Notice बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Notice [identifier: {{ param }}] तैयार है",
+            "updated": "एक Notice [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Notice [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Notice [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Notice"
+            },
+            "title": "Title",
+            "description": "Description",
+            "publishDate": "Publish Date",
+            "isActive": "Is Active",
+            "isDeleted": "Is Deleted"
+        }
+    }
+}

@@ -1,0 +1,25 @@
+{
+    "nbmonlineApp": {
+        "event" : {
+            "home": {
+                "title": "Events",
+                "createLabel": "नया Event बनाएँ",
+                "createOrEditLabel": "Event बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Event [identifier: {{ param }}] तैयार है",
+            "updated": "एक Event [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Event [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Event [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Event"
+            },
+            "eventName": "Event Name",
+            "description": "Description",
+            "eventDate": "Event Date",
+            "isActive": "Is Active",
+            "isDeleted": "Is Deleted"
+        }
+    }
+}

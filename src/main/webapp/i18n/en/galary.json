@@ -1,0 +1,25 @@
+{
+    "nbmonlineApp": {
+        "galary" : {
+            "home": {
+                "title": "Galaries",
+                "createLabel": "Create a new Galary",
+                "createOrEditLabel": "Create or edit a Galary"
+            },
+            "created": "A new Galary is created with identifier {{ param }}",
+            "updated": "A Galary is updated with identifier {{ param }}",
+            "deleted": "A Galary is deleted with identifier {{ param }}",
+            "delete": {
+                "question": "Are you sure you want to delete Galary {{ id }}?"
+            },
+            "detail": {
+                "title": "Galary"
+            },
+            "imageName": "Image Name",
+            "imageFile": "Image File",
+            "description": "Description",
+            "isActive": "Is Active",
+            "isDeleted": "Is Deleted"
+        }
+    }
+}

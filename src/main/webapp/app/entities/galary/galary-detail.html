@@ -1,0 +1,44 @@
+
+<div>
+    <h2><span data-translate="nbmonlineApp.galary.detail.title">Galary</span> {{vm.galary.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="nbmonlineApp.galary.imageName">Image Name</span></dt>
+        <dd>
+            <span>{{vm.galary.imageName}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.galary.imageFile">Image File</span></dt>
+        <dd>
+            <div ng-if="vm.galary.imageFile">
+                <a ng-click="vm.openFile(vm.galary.imageFileContentType, vm.galary.imageFile)">
+                    <img data-ng-src="{{'data:' + vm.galary.imageFileContentType + ';base64,' + vm.galary.imageFile}}" style="max-width: 100%;" alt="galary image"/>
+                </a>
+                {{vm.galary.imageFileContentType}}, {{vm.byteSize(vm.galary.imageFile)}}
+            </div>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.galary.description">Description</span></dt>
+        <dd>
+            <span>{{vm.galary.description}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.galary.isActive">Is Active</span></dt>
+        <dd>
+            <span>{{vm.galary.isActive}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.galary.isDeleted">Is Deleted</span></dt>
+        <dd>
+            <span>{{vm.galary.isDeleted}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="galary-detail.edit({id:vm.galary.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

@@ -1,0 +1,25 @@
+{
+    "nbmonlineApp": {
+        "news" : {
+            "home": {
+                "title": "News",
+                "createLabel": "नया News बनाएँ",
+                "createOrEditLabel": "News बनाएँ या संपादित करें"
+            },
+            "created": "एक नया News [identifier: {{ param }}] तैयार है",
+            "updated": "एक News [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "News [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "News [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "News"
+            },
+            "title": "Title",
+            "description": "Description",
+            "publishDate": "Publish Date",
+            "isActive": "Is Active",
+            "isDeleted": "Is Deleted"
+        }
+    }
+}

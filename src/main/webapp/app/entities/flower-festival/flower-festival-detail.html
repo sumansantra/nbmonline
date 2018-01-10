@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="nbmonlineApp.flowerFestival.detail.title">Flower Festival</span> {{vm.flowerFestival.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="nbmonlineApp.flowerFestival.festivalName">Festival Name</span></dt>
+        <dd>
+            <span>{{vm.flowerFestival.festivalName}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.flowerFestival.year">Year</span></dt>
+        <dd>
+            <span>{{vm.flowerFestival.year}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.flowerFestival.description">Description</span></dt>
+        <dd>
+            <span>{{vm.flowerFestival.description}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.flowerFestival.isActive">Is Active</span></dt>
+        <dd>
+            <span>{{vm.flowerFestival.isActive}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.flowerFestival.isDeleted">Is Deleted</span></dt>
+        <dd>
+            <span>{{vm.flowerFestival.isDeleted}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="flower-festival-detail.edit({id:vm.flowerFestival.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

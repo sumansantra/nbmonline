@@ -1,0 +1,77 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()" show-validation>
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myFlowerFestivalLabel" data-translate="nbmonlineApp.flowerFestival.home.createOrEditLabel">Create or edit a Flower Festival</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.flowerFestival.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.flowerFestival.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.flowerFestival.festivalName" for="field_festivalName">Festival Name</label>
+            <input type="text" class="form-control" name="festivalName" id="field_festivalName"
+                    ng-model="vm.flowerFestival.festivalName"
+                    required/>
+            <div ng-show="editForm.festivalName.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.festivalName.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.flowerFestival.year" for="field_year">Year</label>
+            <input type="text" class="form-control" name="year" id="field_year"
+                    ng-model="vm.flowerFestival.year"
+                    required/>
+            <div ng-show="editForm.year.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.year.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.flowerFestival.description" for="field_description">Description</label>
+                <textarea class="form-control" name="description" id="field_description"
+                    ng-model="vm.flowerFestival.description" ></textarea>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.flowerFestival.isActive" for="field_isActive">Is Active</label>
+                <input type="checkbox" name="isActive" id="field_isActive"
+                          ng-model="vm.flowerFestival.isActive"/>
+            <div ng-show="editForm.isActive.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.isActive.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="nbmonlineApp.flowerFestival.isDeleted" for="field_isDeleted">Is Deleted</label>
+                <input type="checkbox" name="isDeleted" id="field_isDeleted"
+                          ng-model="vm.flowerFestival.isDeleted"/>
+            <div ng-show="editForm.isDeleted.$invalid">
+                <p class="help-block"
+                    ng-show="editForm.isDeleted.$error.required" data-translate="entity.validation.required">
+                    This field is required.
+                </p>
+            </div>
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

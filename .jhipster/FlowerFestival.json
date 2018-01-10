@@ -1,0 +1,52 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "flowerFestivalImages",
+            "otherEntityName": "flowerFestivalImage",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "flowerFestival"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "festivalName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "year",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "byte[]",
+            "fieldTypeBlobContent": "text"
+        },
+        {
+            "fieldName": "isActive",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "isDeleted",
+            "fieldType": "Boolean",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "changelogDate": "20171231153143",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "flower_festival",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pagination"
+}

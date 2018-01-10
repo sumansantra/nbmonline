@@ -1,0 +1,25 @@
+{
+    "nbmonlineApp": {
+        "flowerFestivalImage" : {
+            "home": {
+                "title": "FlowerFestivalImages",
+                "createLabel": "नया Flower Festival Image बनाएँ",
+                "createOrEditLabel": "Flower Festival Image बनाएँ या संपादित करें"
+            },
+            "created": "एक नया Flower Festival Image [identifier: {{ param }}] तैयार है",
+            "updated": "एक Flower Festival Image [identifier: {{ param }}] का अद्यतन हुआ है",
+            "deleted": "Flower Festival Image [identifier: {{ param }}] हटा दिया है",
+            "delete": {
+                "question": "Flower Festival Image [id: {{ id }}] हटाने की पुष्टि करें"
+            },
+            "detail": {
+                "title": "Flower Festival Image"
+            },
+            "imageName": "Image Name",
+            "imageFile": "Image File",
+            "isActive": "Is Active",
+            "isDeleted": "Is Deleted",
+            "flowerFestival": "Flower Festival"
+        }
+    }
+}

@@ -1,0 +1,73 @@
+<div>
+    <h2 data-translate="nbmonlineApp.latestActivity.home.title">Latest Activities</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="latest-activity.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="nbmonlineApp.latestActivity.home.createLabel">
+                        Create new Latest Activity
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="activityName"><span data-translate="nbmonlineApp.latestActivity.activityName">Activity Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="description"><span data-translate="nbmonlineApp.latestActivity.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="image"><span data-translate="nbmonlineApp.latestActivity.image">Image</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isActive"><span data-translate="nbmonlineApp.latestActivity.isActive">Is Active</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isDeleted"><span data-translate="nbmonlineApp.latestActivity.isDeleted">Is Deleted</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="latestActivity in vm.latestActivities track by latestActivity.id">
+                    <td><a ui-sref="latest-activity-detail({id:latestActivity.id})">{{latestActivity.id}}</a></td>
+                    <td>{{latestActivity.activityName}}</td>
+                    <td>{{latestActivity.description}}</td>
+                    <td>
+                        <a ng-if="latestActivity.image" ng-click="vm.openFile(latestActivity.imageContentType, latestActivity.image)">
+                            <img data-ng-src="{{'data:' + latestActivity.imageContentType + ';base64,' + latestActivity.image}}" style="max-height: 30px;" alt="latestActivity image"/>
+                        </a>
+                        <span ng-if="latestActivity.image">{{latestActivity.imageContentType}}, {{vm.byteSize(latestActivity.image)}}</span>
+                    </td>
+                    <td>{{latestActivity.isActive}}</td>
+                    <td>{{latestActivity.isDeleted}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="latest-activity-detail({id:latestActivity.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="latest-activity.edit({id:latestActivity.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="latest-activity.delete({id:latestActivity.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

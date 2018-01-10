@@ -1,0 +1,44 @@
+
+<div>
+    <h2><span data-translate="nbmonlineApp.flowerFestivalImage.detail.title">Flower Festival Image</span> {{vm.flowerFestivalImage.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="nbmonlineApp.flowerFestivalImage.imageName">Image Name</span></dt>
+        <dd>
+            <span>{{vm.flowerFestivalImage.imageName}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.flowerFestivalImage.imageFile">Image File</span></dt>
+        <dd>
+            <div ng-if="vm.flowerFestivalImage.imageFile">
+                <a ng-click="vm.openFile(vm.flowerFestivalImage.imageFileContentType, vm.flowerFestivalImage.imageFile)">
+                    <img data-ng-src="{{'data:' + vm.flowerFestivalImage.imageFileContentType + ';base64,' + vm.flowerFestivalImage.imageFile}}" style="max-width: 100%;" alt="flowerFestivalImage image"/>
+                </a>
+                {{vm.flowerFestivalImage.imageFileContentType}}, {{vm.byteSize(vm.flowerFestivalImage.imageFile)}}
+            </div>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.flowerFestivalImage.isActive">Is Active</span></dt>
+        <dd>
+            <span>{{vm.flowerFestivalImage.isActive}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.flowerFestivalImage.isDeleted">Is Deleted</span></dt>
+        <dd>
+            <span>{{vm.flowerFestivalImage.isDeleted}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.flowerFestivalImage.flowerFestival">Flower Festival</span></dt>
+        <dd>
+            <a ui-sref="flower-festival-detail({id:vm.flowerFestivalImage.flowerFestival.id})">{{vm.flowerFestivalImage.flowerFestival.festivalName}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="flower-festival-image-detail.edit({id:vm.flowerFestivalImage.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

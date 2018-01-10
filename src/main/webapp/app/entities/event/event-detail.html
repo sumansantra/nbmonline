@@ -1,0 +1,39 @@
+
+<div>
+    <h2><span data-translate="nbmonlineApp.event.detail.title">Event</span> {{vm.event.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="nbmonlineApp.event.eventName">Event Name</span></dt>
+        <dd>
+            <span>{{vm.event.eventName}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.event.description">Description</span></dt>
+        <dd>
+            <span>{{vm.event.description}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.event.eventDate">Event Date</span></dt>
+        <dd>
+            <span>{{vm.event.eventDate | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.event.isActive">Is Active</span></dt>
+        <dd>
+            <span>{{vm.event.isActive}}</span>
+        </dd>
+        <dt><span data-translate="nbmonlineApp.event.isDeleted">Is Deleted</span></dt>
+        <dd>
+            <span>{{vm.event.isDeleted}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="event-detail.edit({id:vm.event.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

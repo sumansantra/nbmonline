@@ -1,0 +1,73 @@
+<div>
+    <h2 data-translate="nbmonlineApp.galary.home.title">Galaries</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="galary.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="nbmonlineApp.galary.home.createLabel">
+                        Create new Galary
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="imageName"><span data-translate="nbmonlineApp.galary.imageName">Image Name</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="imageFile"><span data-translate="nbmonlineApp.galary.imageFile">Image File</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="description"><span data-translate="nbmonlineApp.galary.description">Description</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isActive"><span data-translate="nbmonlineApp.galary.isActive">Is Active</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="isDeleted"><span data-translate="nbmonlineApp.galary.isDeleted">Is Deleted</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="galary in vm.galaries track by galary.id">
+                    <td><a ui-sref="galary-detail({id:galary.id})">{{galary.id}}</a></td>
+                    <td>{{galary.imageName}}</td>
+                    <td>
+                        <a ng-if="galary.imageFile" ng-click="vm.openFile(galary.imageFileContentType, galary.imageFile)">
+                            <img data-ng-src="{{'data:' + galary.imageFileContentType + ';base64,' + galary.imageFile}}" style="max-height: 30px;" alt="galary image"/>
+                        </a>
+                        <span ng-if="galary.imageFile">{{galary.imageFileContentType}}, {{vm.byteSize(galary.imageFile)}}</span>
+                    </td>
+                    <td>{{galary.description}}</td>
+                    <td>{{galary.isActive}}</td>
+                    <td>{{galary.isDeleted}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="galary-detail({id:galary.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="galary.edit({id:galary.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="galary.delete({id:galary.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+        <uib-pagination class="pagination-sm" total-items="vm.totalItems" items-per-page="vm.itemsPerPage" ng-model="vm.page" ng-change="vm.transition()"></uib-pagination>
+    </div>
+</div>

@@ -23,7 +23,7 @@ npm-debug.log.*
 # Eclipse
 ######################
 *.pydevproject
-.project
+#.project
 .metadata
 tmp/
 tmp/**/*
@@ -32,7 +32,7 @@ tmp/**/*
 *.swp
 *~.nib
 local.properties
-.classpath
+#.classpath
 .settings/
 .loadpath
 .factorypath
